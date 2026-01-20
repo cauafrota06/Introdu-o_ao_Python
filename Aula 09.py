@@ -72,3 +72,7 @@ cachorro3 = ["Caramelo","Poodle", "Salsicha"]
 print(cachorro1 is cachorro2)
 print(cachorro1 is cachorro3)
 
+for i in range(10):
+    if i==5:
+        break
+    print(i)
