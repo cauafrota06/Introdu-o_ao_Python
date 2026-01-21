@@ -42,7 +42,6 @@ while vidaJogador1 > 0 and vidaJogador2 > 0:
             break
         else:
             print("Opção inválida! Você perdeu o turno.")
-
         turno_atual = 2
 
     else:
