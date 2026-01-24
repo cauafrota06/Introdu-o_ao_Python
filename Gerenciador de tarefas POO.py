@@ -25,15 +25,18 @@ class GerenciadorTarefas:
         print(f"Tarefa '{descricao}' criada com sucesso!")
 
     def alterar_status(self):
+        self.listar_tarefas()
+
         if not self.lista_tarefas:
             print("Nenhuma tarefa cadastrada.")
             return
 
-        id_busca = int(input("Digite o ID da tarefa: "))
+        id_busca = int(input("Digite o ID da tarefa que deseja atualizar o status: "))
 
         for tarefa in self.lista_tarefas:
-            if tarefa.id == id_busca:
+            if tarefa.id == id_busca and 0 <= id_busca <len(self.lista_tarefas):
                 tarefa.status = input("Novo status: ")
+
                 print(f"Tarefa {id_busca} atualizada!")
                 return
 
@@ -47,12 +50,29 @@ class GerenciadorTarefas:
             for t in self.lista_tarefas:
                 print(f"ID: {t.id} | [{t.status}] {t.descricao} (Urgência: {t.urgencia})")
 
+    def deletar_tarefa(self):
+        self.listar_tarefas()
+        if not self.lista_tarefas:
+            return
+        try:
+            for tarefa in self.lista_tarefas:
+                indice = int(input("Digite o ID da tarefa que deseja atualizar o status: "))
+                if  tarefa.id == indice:
+                    self.lista_tarefas.remove(tarefa)
+                    print(f"Tarefa {indice} deletada com sucesso!")
+                    return
+                else:
+                    print("Índice inválido")
+        except ValueError:
+                print("Digite um número inteiro")
+
     def menu(self):
 
         while True:
             print('\n1 - Criar Tarefa')
             print('2 - Alterar Status')
             print('3 - Listar Tarefas')
+            print('4 - Deletar Tarefa')
             print('0 - Sair')
 
             opcao = int(input('Opção: '))
@@ -65,6 +85,9 @@ class GerenciadorTarefas:
 
             elif opcao == 3:
                 self.listar_tarefas()
+
+            elif opcao == 4:
+                self.deletar_tarefa()
 
             elif opcao == 0:
                 print("Saindo...........")
